@@ -22,6 +22,8 @@ RUN pip install openai
 
 COPY . .
 
+RUN flask db init
+RUN flask db migrate -m "Initial migration"
 RUN flask db upgrade
 RUN flask seed all
 CMD gunicorn app:app
